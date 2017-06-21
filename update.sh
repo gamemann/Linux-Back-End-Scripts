@@ -29,9 +29,15 @@ do
 
 	# Update permissions.
 	./scripts/updatepermissions.sh $line $1
+	
+	# Remove "steamapps" folder in server directory.
+	rm -rf $SERVERDIR/$line/server/steamapps
 
 	# Finished.
 	echo "Finished updating $line..."
 done <$SERVERLIST
+
+# Reset permissions.
+chown -R servers:serversg $GAMEDIR/$1/steamapps
 
 echo "Update complete..."
